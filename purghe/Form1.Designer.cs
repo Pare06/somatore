@@ -34,7 +34,6 @@ namespace purghe
             this.FilePicker = new System.Windows.Forms.OpenFileDialog();
             this.DrawImageButton = new System.Windows.Forms.Button();
             this.BlackScreenButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
             this.CaneDiDioButton = new System.Windows.Forms.Button();
             this.PrintTextButton = new System.Windows.Forms.Button();
             this.PayloadTimedCheck = new System.Windows.Forms.CheckBox();
@@ -67,15 +66,6 @@ namespace purghe
             this.BlackScreenButton.Text = "SCHERMO NERO";
             this.BlackScreenButton.UseVisualStyleBackColor = true;
             this.BlackScreenButton.Click += new System.EventHandler(this.BlackScreenButtonClick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(78, 358);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(136, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "se sei sveglio lo puoi levare";
             // 
             // CaneDiDioButton
             // 
@@ -148,7 +138,6 @@ namespace purghe
             this.Controls.Add(this.PayloadTimedCheck);
             this.Controls.Add(this.PrintTextButton);
             this.Controls.Add(this.CaneDiDioButton);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.BlackScreenButton);
             this.Controls.Add(this.DrawImageButton);
             this.Name = "Form1";
@@ -163,7 +152,6 @@ namespace purghe
         private OpenFileDialog FilePicker;
         private Button DrawImageButton;
         private Button BlackScreenButton;
-        private Label label2;
         private Button CaneDiDioButton;
         private Button PrintTextButton;
         private CheckBox PayloadTimedCheck;
