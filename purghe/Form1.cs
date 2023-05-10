@@ -48,21 +48,21 @@ namespace purghe
 			if (!Warning()) return;
 			if (FilePicker.ShowDialog() != DialogResult.OK) return;
 			Image image = Image.FromFile(FilePicker.FileName);
-			payloadMethod = () => graphics.DrawImage(image, ScreenBounds());
+			payloadMethod = () => graphics.DrawImage(image, ScreenBounds);
 			RunPayload();
 		}
 		
 		private void BlackScreenButtonClick(object sender, EventArgs e)
 		{
 			if (!Warning()) return;
-			payloadMethod = () => graphics.FillRectangle(new SolidBrush(Color.Black), ScreenBounds());
+			payloadMethod = () => graphics.FillRectangle(new SolidBrush(Color.Black), ScreenBounds);
 			RunPayload();
 		}
 
 		private void EpilepsyButtonClick(object sender, EventArgs e)
 		{
 			if (!Warning()) return;
-			payloadMethod = () => graphics.FillRectangle(new SolidBrush(RandomColor()), ScreenBounds());
+			payloadMethod = () => graphics.FillRectangle(new SolidBrush(RandomColor), ScreenBounds);
 			RunPayload();
 		}
 
@@ -73,7 +73,7 @@ namespace purghe
 			Console.WriteLine("INSERISCI IL TESTO (NON SOSPETTO!!!!)!!\n");
 			string path = Console.ReadLine();
 			FreeConsole();
-			payloadMethod = () => graphics.DrawString(path, new Font("Comic Sans MS", 50), new SolidBrush(RandomColor()), RandomPoint());
+			payloadMethod = () => graphics.DrawString(path, new Font("Comic Sans MS", 50), new SolidBrush(RandomColor), RandomPoint);
 			RunPayload();
 		}
 
@@ -162,10 +162,28 @@ namespace purghe
 			return false;
 		}
 
-        private Color RandomColor() => Color.FromArgb(rand.Next(0, 256), rand.Next(0, 256), rand.Next(0, 256));
+        private Color RandomColor
+		{
+			get
+			{
+                return Color.FromArgb(rand.Next(0, 256), rand.Next(0, 256), rand.Next(0, 256));
+            }
+		}
 
-		private Point RandomPoint() => new Point(rand.Next(Screen.PrimaryScreen.Bounds.Width), rand.Next(Screen.PrimaryScreen.Bounds.Height));
+		private Point RandomPoint
+		{
+			get
+			{
+                return new Point(rand.Next(Screen.PrimaryScreen.Bounds.Width), rand.Next(Screen.PrimaryScreen.Bounds.Height));
+            } 
+		}
 
-		private Rectangle ScreenBounds() => Screen.PrimaryScreen.Bounds;
+		private Rectangle ScreenBounds
+		{
+			get
+			{
+				return Screen.PrimaryScreen.Bounds;
+			}
+		}
     }
 }
